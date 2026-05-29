@@ -58,3 +58,9 @@
 .form-switch { text-align: center; font-size: var(--font-size-xs); color: var(--text-muted); margin-top: 8px; }
 .link-btn { background: none; border: none; color: var(--primary); cursor: pointer; font-size: inherit; font-family: inherit; font-weight: 600; }
 .link-btn:hover { color: var(--primary-hover); }
+
+/* ── 提示信息 ── */
+.alert { padding: 10px 14px; border-radius: var(--radius-sm); font-size: var(--font-size-sm); margin-bottom: 4px; line-height: 1.5; }
+.alert-error { background: #FFF0ED; color: #CF2020; border: 1px solid #FFCCC7; }
+.alert-success { background: #EDFFF5; color: #1F8B4C; border: 1px solid #B7F0D0; }
+.field-err { font-size: var(--font-size-xs); color: #CF2020; margin-top: 2px; }

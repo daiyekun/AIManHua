@@ -56,6 +56,24 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    for (var i = 0; ; i++)
+    {
+        try
+        {
+            db.Database.Migrate();
+            break;
+        }
+        catch (Exception ex) when (i < 5)
+        {
+            app.Logger.LogWarning("DB migration attempt {Attempt} failed: {Error}. Retrying in 3s...", i + 1, ex.Message);
+            Thread.Sleep(3000);
+        }
+    }
+}
+
 app.MapDefaultEndpoints();
 
 if (app.Environment.IsDevelopment())
@@ -63,7 +81,10 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

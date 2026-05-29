@@ -34,6 +34,7 @@ var minio = builder.AddContainer("minio", "minio/minio")
 // ── Services ─────────────────────────────────────────────────────
 
 var apiService = builder.AddProject<Projects.AIManHua_ApiService>("api")
+    .WithHttpEndpoint(port: 5000)
     .WithReference(mysql)
     .WithReference(redis)
     .WithReference(rabbitMq)

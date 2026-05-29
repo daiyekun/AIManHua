@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AuthModal from "../components/AuthModal/AuthModal";
+import { useAuthStore } from "../store/useAuthStore";
 import "./HomePage.css";
 
 const features = [
@@ -27,6 +28,8 @@ const steps = [
 export default function HomePage() {
   const [authOpen, setAuthOpen] = useState(false);
   const [authTab, setAuthTab] = useState<"login" | "register">("login");
+  const { user, logout, isLoggedIn } = useAuthStore();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const openAuth = (tab: "login" | "register") => { setAuthTab(tab); setAuthOpen(true); };
 
@@ -48,8 +51,36 @@ export default function HomePage() {
             <a href="#">帮助中心</a>
           </div>
           <div className="nav-actions">
-            <button className="btn btn-outline btn-sm" onClick={() => openAuth("login")}>登录</button>
-            <button className="btn btn-primary btn-sm" onClick={() => openAuth("register")}>注册</button>
+            {isLoggedIn() ? (
+              <div className="user-menu-wrapper">
+                <button className="user-menu-trigger" onClick={() => setMenuOpen(!menuOpen)}>
+                  <span className="user-avatar">👤</span>
+                  <span className="user-name">{user!.username}</span>
+                  <span className="user-arrow">{menuOpen ? "▲" : "▼"}</span>
+                </button>
+                {menuOpen && (
+                  <div className="user-dropdown">
+                    <div className="user-dropdown-hd">
+                      <span className="user-avatar-lg">👤</span>
+                      <div>
+                        <div className="user-dropdown-name">{user!.username}</div>
+                        <div className="user-dropdown-email">{user!.email}</div>
+                      </div>
+                    </div>
+                    <div className="user-dropdown-divider" />
+                    <a href="#" className="user-dropdown-item">我的作品</a>
+                    <a href="#" className="user-dropdown-item">账号设置</a>
+                    <div className="user-dropdown-divider" />
+                    <button className="user-dropdown-item logout-btn" onClick={() => { logout(); setMenuOpen(false); }}>退出登录</button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <button className="btn btn-outline btn-sm" onClick={() => openAuth("login")}>登录</button>
+                <button className="btn btn-primary btn-sm" onClick={() => openAuth("register")}>注册</button>
+              </>
+            )}
           </div>
           <button className="menu-toggle" aria-label="菜单">&#9776;</button>
         </div>
