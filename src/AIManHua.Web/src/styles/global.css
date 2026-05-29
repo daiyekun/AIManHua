@@ -1,0 +1,105 @@
+/* ═══════════════════════════════════════════
+   AI 漫画/图片生成平台 — 全局样式
+   风格：轻量赛博二次元 / 简约科技风
+   ═══════════════════════════════════════════ */
+
+:root {
+  /* 品牌色 */
+  --primary: #5B5FFF;
+  --primary-hover: #4A4EE6;
+  --primary-light: #EDEDFF;
+
+  /* 辅助色 */
+  --accent: #FF7A50;
+  --success: #36D399;
+
+  /* 中性色 */
+  --bg-white: #FFFFFF;
+  --bg-light: #F5F7FA;
+  --bg-card: #FFFFFF;
+  --text-dark: #333333;
+  --text-muted: #888888;
+  --text-light: #AAAAAA;
+  --border: #E8ECF1;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg: 0 8px 32px rgba(91,95,255,.12);
+
+  /* 圆角 */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 50px;
+
+  /* 字体 */
+  --font-family: "Source Han Sans CN", "思源黑体", "Microsoft YaHei", "微软雅黑", sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 28px;
+  --font-size-2xl: 36px;
+  --font-size-3xl: 48px;
+
+  /* 布局 */
+  --max-width: 1200px;
+  --navbar-height: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-dark);
+  background: var(--bg-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-hover); }
+
+img { max-width: 100%; display: block; }
+
+/* ── 按钮体系 ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 24px; border-radius: var(--radius-full); font-size: var(--font-size-sm);
+  font-weight: 600; cursor: pointer; border: none; transition: all .2s;
+  font-family: inherit; white-space: nowrap;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-outline { background: transparent; border: 1.5px solid var(--primary); color: var(--primary); }
+.btn-outline:hover { background: var(--primary-light); }
+.btn-white { background: #fff; color: var(--primary); border: 1.5px solid #fff; }
+.btn-white:hover { background: var(--primary-light); border-color: var(--primary-light); }
+.btn-lg { padding: 14px 36px; font-size: var(--font-size-base); }
+.btn-sm { padding: 6px 16px; font-size: var(--font-size-xs); }
+
+/* ── 容器 ── */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+/* ── 章节标题 ── */
+.section-title {
+  font-size: var(--font-size-2xl); font-weight: 700; text-align: center;
+  margin-bottom: 12px; color: var(--text-dark);
+}
+.section-subtitle { text-align: center; color: var(--text-muted); font-size: var(--font-size-base); margin-bottom: 48px; }
+
+/* ── 响应式 ── */
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 56px;
+    --font-size-3xl: 32px;
+    --font-size-2xl: 24px;
+    --font-size-xl: 20px;
+  }
+  .container { padding: 0 16px; }
+  .section-subtitle { margin-bottom: 32px; }
+}

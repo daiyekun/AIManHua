@@ -8,7 +8,7 @@ var rabbitMqPassword = builder.AddParameter("rabbitmq-password", "guest");
 
 // ── Infrastructure ──────────────────────────────────────────────
 
-var mysql = builder.AddMySql("mysql", password: mysqlPassword, port: 3306)
+var mysql = builder.AddMySql("mysql", password: mysqlPassword, port: 3307)
     .WithDataVolume("aimanhua-mysql-data")
     .AddDatabase("aimanhua");
 
@@ -53,8 +53,8 @@ var agentService = builder.AddProject<Projects.AIManHua_AgentService>("agent")
     .WithEnvironment("Minio__SecretKey", "minioadmin")
     .WithEnvironment("ASPIRE_ENVIRONMENT", builder.Environment.EnvironmentName);
 
-var web = builder.AddNpmApp("web", "../AIManHua.Web", "dev")
-    .WithHttpEndpoint(port: 5173, env: "PORT")
+var web = builder.AddExecutable("web", "npm", "../AIManHua.Web", "run", "dev")
+    .WithHttpEndpoint(port: 5173, isProxied: false)
     .WithReference(apiService)
     .WithReference(agentService);
 
