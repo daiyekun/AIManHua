@@ -1,0 +1,7 @@
+celery>=5.4
+Pillow>=11.0
+Pillow-SIMD>=10.0
+opencv-python>=4.10
+moviepy>=2.0
+redis>=5.2
+pika>=1.3

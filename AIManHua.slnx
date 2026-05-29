@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AIManHua.AgentService/AIManHua.AgentService.csproj" />
+    <Project Path="src/AIManHua.ApiService/AIManHua.ApiService.csproj" />
+    <Project Path="src/AIManHua.AppHost/AIManHua.AppHost.csproj" />
+    <Project Path="src/AIManHua.Domain/AIManHua.Domain.csproj" />
+    <Project Path="src/AIManHua.Infrastructure/AIManHua.Infrastructure.csproj" />
+    <Project Path="src/AIManHua.ServiceDefaults/AIManHua.ServiceDefaults.csproj" />
+  </Folder>
+</Solution>
